@@ -9,6 +9,12 @@ namespace PacManDevoir01
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         private Texture2D _arrierePlan;
+        private Texture2D _PacmanAvant;
+        private Texture2D _Pacmanleft;
+        private Texture2D _PacmanRightt;
+
+        Vector2 positionPacman;
+       
 
         public Game1()
         {
@@ -21,6 +27,14 @@ namespace PacManDevoir01
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+
+            //la Position initiale du PacMan
+            positionPacman = new Vector2(100.0f, 100.0f);
+            positionPacman.X = 50.0f;
+            positionPacman.Y = 50.0f;
+
+            //
+
 
             base.Initialize();
         }

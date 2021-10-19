@@ -65,18 +65,37 @@ namespace PacManDevoir01
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            if (Keyboard.GetState().IsKeyDown(Keys.Left))
+            if (Keyboard.GetState().IsKeyDown(Keys.Left) && !Keyboard.GetState().IsKeyDown(Keys.Right))
+
             {
-                Pacman = _Pacmanleft;
-                positionPacman.X -= 5; // déplacer de 5 pixels vers la gauche
+                Pacman =  _Pacmanleft;
+                positionPacman.X = System.Math.Max(positionPacman.X -
+                    gameTime.ElapsedGameTime.Milliseconds * 0.5f, 0.0f);
+
             }
-            else if (Keyboard.GetState().IsKeyDown(Keys.Right))
+
+            else if (Keyboard.GetState().IsKeyDown(Keys.Right) && !Keyboard.GetState().IsKeyDown(Keys.Left))
             {
-                Pacman = _Pacmanleft;
-                positionPacman.X += 5; // déplacer de 5 pixels vers la droite
+                Pacman= _PacmanRightt;
+                positionPacman.X = System.Math.Min(positionPacman.X + gameTime.ElapsedGameTime.Milliseconds * 0.5f, _graphics.GraphicsDevice.Viewport.Width - Pacman.Width);
+
             }
             else
                 Pacman = _PacmanAvant;
+
+            if (Keyboard.GetState().IsKeyDown(Keys.Up) && !Keyboard.GetState().IsKeyDown(Keys.Down))
+
+            {
+
+               positionPacman.Y = System.Math.Max(positionPacman.Y - gameTime.ElapsedGameTime.Milliseconds * 0.5f, 0.0f);
+
+            }
+
+            else if (Keyboard.GetState().IsKeyDown(Keys.Down) && !Keyboard.GetState().IsKeyDown(Keys.Up))
+            {
+
+               positionPacman.Y = System.Math.Min(positionPacman.Y + gameTime.ElapsedGameTime.Milliseconds * 0.5f, _graphics.GraphicsDevice.Viewport.Width - Pacman.Width);
+            }
 
 
             // TODO: Add your update logic here

@@ -13,6 +13,8 @@ namespace PacManDevoir01
         private Texture2D _Pacmanleft;
         private Texture2D _PacmanRightt;
 
+        private Texture2D Pacman;
+
         Vector2 positionPacman;
        
 
@@ -29,6 +31,7 @@ namespace PacManDevoir01
             // TODO: Add your initialization logic here
 
             //la Position initiale du PacMan
+
             positionPacman = new Vector2(100.0f, 100.0f);
             positionPacman.X = 325.0f;
             positionPacman.Y = 325.0f;
@@ -42,17 +45,39 @@ namespace PacManDevoir01
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
+
             _arrierePlan = Content.Load<Texture2D>("plateau");
 
             _PacmanAvant = Content.Load<Texture2D>("Pac-1");
+            _PacmanRightt = Content.Load<Texture2D>("Pac-2");
+            _Pacmanleft = Content.Load<Texture2D>("Pac-3");
 
-        // TODO: use this.Content to load your game content here
-    }
+            Pacman = _PacmanAvant;
+
+
+
+
+            // TODO: use this.Content to load your game content here
+        }
 
         protected override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+
+            if (Keyboard.GetState().IsKeyDown(Keys.Left))
+            {
+                Pacman = _Pacmanleft;
+                positionPacman.X -= 5; // déplacer de 5 pixels vers la gauche
+            }
+            else if (Keyboard.GetState().IsKeyDown(Keys.Right))
+            {
+                Pacman = _Pacmanleft;
+                positionPacman.X += 5; // déplacer de 5 pixels vers la droite
+            }
+            else
+                Pacman = _PacmanAvant;
+
 
             // TODO: Add your update logic here
 
@@ -65,11 +90,20 @@ namespace PacManDevoir01
 
         // TODO: Add your drawing code here
         _spriteBatch.Begin();
-        _spriteBatch.Draw(_arrierePlan, position: Vector2.Zero, Color.White);
-            //pacMan
-        _spriteBatch.Draw(_PacmanAvant, positionPacman, Color.White);
 
-        _spriteBatch.End();
+
+        _spriteBatch.Draw(_arrierePlan, position: Vector2.Zero, Color.White);
+
+        
+            //pacMan
+
+            _spriteBatch.Draw(Pacman, positionPacman, Color.White);
+      
+
+
+
+
+            _spriteBatch.End();
 
         base.Draw(gameTime);
         }

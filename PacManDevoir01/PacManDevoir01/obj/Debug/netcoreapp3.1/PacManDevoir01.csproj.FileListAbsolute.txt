@@ -24,3 +24,5 @@ C:\Users\mathi\Documents\GitHub\Jeux_Video\PacManDevoir01\PacManDevoir01\obj\Deb
 C:\Users\mathi\Documents\GitHub\Jeux_Video\PacManDevoir01\PacManDevoir01\obj\Debug\netcoreapp3.1\PacManDevoir01.pdb
 C:\Users\mathi\Documents\GitHub\Jeux_Video\PacManDevoir01\PacManDevoir01\obj\Debug\netcoreapp3.1\PacManDevoir01.genruntimeconfig.cache
 C:\Users\mathi\Documents\GitHub\Jeux_Video\PacManDevoir01\PacManDevoir01\bin\Debug\netcoreapp3.1\Content\Pac-1.xnb
+C:\Users\mathi\Documents\GitHub\Jeux_Video\PacManDevoir01\PacManDevoir01\bin\Debug\netcoreapp3.1\Content\pac-2.xnb
+C:\Users\mathi\Documents\GitHub\Jeux_Video\PacManDevoir01\PacManDevoir01\bin\Debug\netcoreapp3.1\Content\pac-3.xnb

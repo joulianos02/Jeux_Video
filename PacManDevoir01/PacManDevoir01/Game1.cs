@@ -30,8 +30,8 @@ namespace PacManDevoir01
 
             //la Position initiale du PacMan
             positionPacman = new Vector2(100.0f, 100.0f);
-            positionPacman.X = 50.0f;
-            positionPacman.Y = 50.0f;
+            positionPacman.X = 325.0f;
+            positionPacman.Y = 325.0f;
 
             //
 

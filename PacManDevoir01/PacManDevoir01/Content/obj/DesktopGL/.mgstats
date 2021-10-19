@@ -1,2 +1,3 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"C:/Users/mathi/Documents/GitHub/Jeux_Video/PacManDevoir01/PacManDevoir01/Content/plateau.png","C:/Users/mathi/Documents/GitHub/Jeux_Video/PacManDevoir01/PacManDevoir01/Content/bin/DesktopGL/plateau.xnb","TextureProcessor","Texture2DContent",12512,2074265,0.1984317
+"C:/Users/mathi/Documents/GitHub/Jeux_Video/PacManDevoir01/PacManDevoir01/Content/Pac-1.png","C:/Users/mathi/Documents/GitHub/Jeux_Video/PacManDevoir01/PacManDevoir01/Content/bin/DesktopGL/Pac-1.xnb","TextureProcessor","Texture2DContent",764,7309,0.1306206
+"C:/Users/mathi/Documents/GitHub/Jeux_Video/PacManDevoir01/PacManDevoir01/Content/plateau.png","C:/Users/mathi/Documents/GitHub/Jeux_Video/PacManDevoir01/PacManDevoir01/Content/bin/DesktopGL/plateau.xnb","TextureProcessor","Texture2DContent",12512,2074265,0.0678803

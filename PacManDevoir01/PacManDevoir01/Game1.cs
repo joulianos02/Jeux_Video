@@ -44,6 +44,8 @@ namespace PacManDevoir01
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             _arrierePlan = Content.Load<Texture2D>("plateau");
 
+            _PacmanAvant = Content.Load<Texture2D>("Pac-1");
+
         // TODO: use this.Content to load your game content here
     }
 
@@ -64,6 +66,9 @@ namespace PacManDevoir01
         // TODO: Add your drawing code here
         _spriteBatch.Begin();
         _spriteBatch.Draw(_arrierePlan, position: Vector2.Zero, Color.White);
+            //pacMan
+        _spriteBatch.Draw(_PacmanAvant, positionPacman, Color.White);
+
         _spriteBatch.End();
 
         base.Draw(gameTime);

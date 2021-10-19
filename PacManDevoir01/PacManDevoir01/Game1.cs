@@ -10,8 +10,11 @@ namespace PacManDevoir01
         private SpriteBatch _spriteBatch;
         private Texture2D _arrierePlan;
         private Texture2D _PacmanAvant;
-        private Texture2D _Pacmanleft;
-        private Texture2D _PacmanRightt;
+        private Texture2D PacManRight1;
+        private Texture2D PacManRight2;
+        private Texture2D PacManLeft1;
+        private Texture2D PacManLeft2;
+
 
         private Texture2D Pacman;
 
@@ -35,6 +38,9 @@ namespace PacManDevoir01
             positionPacman = new Vector2(100.0f, 100.0f);
             positionPacman.X = 325.0f;
             positionPacman.Y = 325.0f;
+          
+
+
 
             //
 
@@ -49,8 +55,8 @@ namespace PacManDevoir01
             _arrierePlan = Content.Load<Texture2D>("plateau");
 
             _PacmanAvant = Content.Load<Texture2D>("Pac-1");
-            _PacmanRightt = Content.Load<Texture2D>("Pac-2");
-            _Pacmanleft = Content.Load<Texture2D>("Pac-3");
+            PacManRight2 = Content.Load<Texture2D>("Pac-2");
+            PacManRight1 = Content.Load<Texture2D>("Pac-3");
 
             Pacman = _PacmanAvant;
 
@@ -68,7 +74,8 @@ namespace PacManDevoir01
             if (Keyboard.GetState().IsKeyDown(Keys.Left) && !Keyboard.GetState().IsKeyDown(Keys.Right))
 
             {
-                Pacman =  _Pacmanleft;
+                Pacman = PacManRight1;
+                Pacman = PacManRight2;
                 positionPacman.X = System.Math.Max(positionPacman.X -
                     gameTime.ElapsedGameTime.Milliseconds * 0.5f, 0.0f);
 
@@ -76,7 +83,7 @@ namespace PacManDevoir01
 
             else if (Keyboard.GetState().IsKeyDown(Keys.Right) && !Keyboard.GetState().IsKeyDown(Keys.Left))
             {
-                Pacman= _PacmanRightt;
+                Pacman= PacManRight2;
                 positionPacman.X = System.Math.Min(positionPacman.X + gameTime.ElapsedGameTime.Milliseconds * 0.5f, _graphics.GraphicsDevice.Viewport.Width - Pacman.Width);
 
             }

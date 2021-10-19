@@ -1,3 +1,0 @@
-Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"C:/Users/mathi/Documents/GitHub/Jeux_Video/PacManExam1/Project1/Content/cherry.png","C:/Users/mathi/Documents/GitHub/Jeux_Video/PacManExam1/Project1/Content/bin/DesktopGL/cherry.xnb","TextureProcessor","Texture2DContent",1137,4181,0.1373593
-"C:/Users/mathi/Documents/GitHub/Jeux_Video/PacManExam1/Project1/Content/plateau.png","C:/Users/mathi/Documents/GitHub/Jeux_Video/PacManExam1/Project1/Content/bin/DesktopGL/plateau.xnb","TextureProcessor","Texture2DContent",12512,2074265,0.0626765

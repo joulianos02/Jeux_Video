@@ -10,10 +10,16 @@ namespace PacManDevoir01
         private SpriteBatch _spriteBatch;
         private Texture2D _arrierePlan;
         private Texture2D _PacmanAvant;
+
         private Texture2D PacManRight1;
         private Texture2D PacManRight2;
+
         private Texture2D PacManLeft1;
         private Texture2D PacManLeft2;
+
+        private Texture2D PacmanUP;
+
+        private Texture2D PacMandown;
 
 
         private Texture2D Pacman;
@@ -55,8 +61,18 @@ namespace PacManDevoir01
             _arrierePlan = Content.Load<Texture2D>("plateau");
 
             _PacmanAvant = Content.Load<Texture2D>("Pac-1");
+            //
             PacManRight2 = Content.Load<Texture2D>("Pac-2");
             PacManRight1 = Content.Load<Texture2D>("Pac-3");
+            //
+            PacManLeft1 = Content.Load<Texture2D>("Pac-2 UP Left");
+            //
+            PacmanUP = Content.Load<Texture2D>("Pac-2 Up");
+            //
+            PacMandown = Content.Load<Texture2D>("Pac-2 Down");
+
+
+
 
             Pacman = _PacmanAvant;
 
@@ -74,8 +90,8 @@ namespace PacManDevoir01
             if (Keyboard.GetState().IsKeyDown(Keys.Left) && !Keyboard.GetState().IsKeyDown(Keys.Right))
 
             {
-                Pacman = PacManRight1;
-                Pacman = PacManRight2;
+                Pacman = PacManLeft1;
+               
                 positionPacman.X = System.Math.Max(positionPacman.X -
                     gameTime.ElapsedGameTime.Milliseconds * 0.5f, 0.0f);
 
@@ -93,14 +109,14 @@ namespace PacManDevoir01
             if (Keyboard.GetState().IsKeyDown(Keys.Up) && !Keyboard.GetState().IsKeyDown(Keys.Down))
 
             {
-
+                Pacman = PacmanUP;
                positionPacman.Y = System.Math.Max(positionPacman.Y - gameTime.ElapsedGameTime.Milliseconds * 0.5f, 0.0f);
 
             }
 
             else if (Keyboard.GetState().IsKeyDown(Keys.Down) && !Keyboard.GetState().IsKeyDown(Keys.Up))
             {
-
+                Pacman = PacMandown;
                positionPacman.Y = System.Math.Min(positionPacman.Y + gameTime.ElapsedGameTime.Milliseconds * 0.5f, _graphics.GraphicsDevice.Viewport.Width - Pacman.Width);
             }
 

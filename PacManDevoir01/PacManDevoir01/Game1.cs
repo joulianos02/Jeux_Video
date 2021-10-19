@@ -8,13 +8,15 @@ namespace PacManDevoir01
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
+        private Texture2D _arrierePlan;
 
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
-        }
+          
+    }
 
         protected override void Initialize()
         {
@@ -26,9 +28,10 @@ namespace PacManDevoir01
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
+            _arrierePlan = Content.Load<Texture2D>("plateau");
 
-            // TODO: use this.Content to load your game content here
-        }
+        // TODO: use this.Content to load your game content here
+    }
 
         protected override void Update(GameTime gameTime)
         {
@@ -44,9 +47,12 @@ namespace PacManDevoir01
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+        // TODO: Add your drawing code here
+        _spriteBatch.Begin();
+        _spriteBatch.Draw(_arrierePlan, position: Vector2.Zero, Color.White);
+        _spriteBatch.End();
 
-            base.Draw(gameTime);
+        base.Draw(gameTime);
         }
     }
 }

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>C:/Users/mathi/Documents/GitHub/Jeux_Video/PacManDevoir01/PacManDevoir01/Content/plateau.png</SourceFile>
-  <SourceTime>2021-10-14T15:17:48.2645052-04:00</SourceTime>
+  <SourceFile>C:/Users/mathi/Documents/GitHub/Jeux_Video/PacManDevoir01/PacManDevoir01/Content/../../../../../../Pictures/plateau.png</SourceFile>
+  <SourceTime>2021-10-20T11:51:14.3248506-04:00</SourceTime>
   <DestFile>C:/Users/mathi/Documents/GitHub/Jeux_Video/PacManDevoir01/PacManDevoir01/Content/bin/DesktopGL/plateau.xnb</DestFile>
-  <DestTime>2021-10-20T11:36:34.4669563-04:00</DestTime>
+  <DestTime>2021-10-20T11:52:07.3431351-04:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2020-08-10T12:17:54-04:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

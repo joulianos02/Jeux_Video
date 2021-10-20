@@ -27,7 +27,7 @@ namespace PacManDevoir01
 
 
         private Texture2D Pacman;
-        private Texture2D Ghost;
+      
 
         Vector2 positionPacman;
         Vector2 positionGhost;
@@ -53,8 +53,8 @@ namespace PacManDevoir01
             positionPacman.Y = 325.0f;
             //
             positionGhost = new Vector2(100.0f, 100.0f);
-            positionGhost.X = 100.0f;
-            positionGhost.Y = 100.0f;
+            positionGhost.X = 40.0f;
+            positionGhost.Y = 40.0f;
 
 
 
@@ -155,7 +155,7 @@ namespace PacManDevoir01
             //pacMan
 
             _spriteBatch.Draw(Pacman, positionPacman, Color.White);
-            _spriteBatch.Draw(Pacman, positionGhost, Color.White);
+            _spriteBatch.Draw(Ghost1, positionGhost, Color.White);
 
 
 

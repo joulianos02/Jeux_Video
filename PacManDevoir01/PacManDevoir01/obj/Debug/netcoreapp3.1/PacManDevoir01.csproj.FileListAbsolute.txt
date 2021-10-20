@@ -30,3 +30,4 @@ C:\Users\mathi\Documents\GitHub\Jeux_Video\PacManDevoir01\PacManDevoir01\bin\Deb
 C:\Users\mathi\Documents\GitHub\Jeux_Video\PacManDevoir01\PacManDevoir01\bin\Debug\netcoreapp3.1\Content\pac-2 Down.xnb
 C:\Users\mathi\Documents\GitHub\Jeux_Video\PacManDevoir01\PacManDevoir01\bin\Debug\netcoreapp3.1\Content\pac-2 Up.xnb
 C:\Users\mathi\Documents\GitHub\Jeux_Video\PacManDevoir01\PacManDevoir01\bin\Debug\netcoreapp3.1\Content\ghost-r1.xnb
+C:\Users\mathi\Documents\GitHub\Jeux_Video\PacManDevoir01\PacManDevoir01\bin\Debug\netcoreapp3.1\Content\cherry.xnb

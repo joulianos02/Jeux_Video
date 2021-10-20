@@ -25,6 +25,7 @@ namespace PacManDevoir01
         private Texture2D Ghost4;
         private Texture2D Cherry;
         private Texture2D Pacman;
+        private Texture2D Ghost;
       
         // Creation des vector
         Vector2 positionPacman;
@@ -83,10 +84,15 @@ namespace PacManDevoir01
             PacMandown = Content.Load<Texture2D>("Pac-2 Down");
             //Ghost & Cherry load
             Ghost1 = Content.Load<Texture2D>("ghost-r1");
+            Ghost2 = Content.Load<Texture2D>("ghost-r2");
+            Ghost3 = Content.Load<Texture2D>("ghost-r3");
+            Ghost4 = Content.Load<Texture2D>("ghost-r4");
+
             Cherry = Content.Load<Texture2D>("cherry");
 
             //
             Pacman = _PacmanAvant;
+            Ghost = Ghost1;
 
            
         }
@@ -130,8 +136,41 @@ namespace PacManDevoir01
                positionPacman.Y = System.Math.Min(positionPacman.Y + gameTime.ElapsedGameTime.Milliseconds * 0.5f, _graphics.GraphicsDevice.Viewport.Width - Pacman.Width);
             }
 
+            //Ghost
+            if (Keyboard.GetState().IsKeyDown(Keys.A) && !Keyboard.GetState().IsKeyDown(Keys.D))
 
-          
+            {
+                Ghost = Ghost4;
+
+                positionGhost.X = System.Math.Max(positionGhost.X -
+                    gameTime.ElapsedGameTime.Milliseconds * 0.5f, 0.0f);
+
+            }
+
+            else if (Keyboard.GetState().IsKeyDown(Keys.D) && !Keyboard.GetState().IsKeyDown(Keys.A))
+            {
+                Ghost = Ghost1;
+                positionGhost.X = System.Math.Max(positionGhost.X -
+                    gameTime.ElapsedGameTime.Milliseconds * 0.5f, 0.0f);
+            }
+            if (Keyboard.GetState().IsKeyDown(Keys.W) && !Keyboard.GetState().IsKeyDown(Keys.S))
+
+            {
+                Ghost = Ghost3;
+
+                positionGhost.X = System.Math.Max(positionGhost.X -
+                    gameTime.ElapsedGameTime.Milliseconds * 0.5f, 0.0f);
+
+            }
+
+            else if (Keyboard.GetState().IsKeyDown(Keys.S) && !Keyboard.GetState().IsKeyDown(Keys.W))
+            {
+                Ghost = Ghost2;
+                positionGhost.X = System.Math.Max(positionGhost.X -
+                    gameTime.ElapsedGameTime.Milliseconds * 0.5f, 0.0f);
+            }
+            else
+
             if (poisitionBackGround.Y > _graphics.GraphicsDevice.Viewport.Height) 
                 poisitionBackGround.Y -= _arrierePlan.Height;
 
@@ -158,7 +197,7 @@ namespace PacManDevoir01
             //SpriteBatch.Draw pour pacMan,Chost,Cherry
             _spriteBatch.Draw(_arrierePlan, poisitionBackGround, Color.White);
             _spriteBatch.Draw(Pacman, positionPacman, Color.White);
-            _spriteBatch.Draw(Ghost1, positionGhost, Color.White);
+            _spriteBatch.Draw(Ghost, positionGhost, Color.White);
             _spriteBatch.Draw(Cherry, positionCherry, Color.White);
           
             _spriteBatch.End();

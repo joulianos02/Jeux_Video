@@ -6,6 +6,9 @@
   <SourceFiles>
     <File>C:/Users/mathi/Documents/GitHub/Jeux_Video/PacManDevoir01/PacManDevoir01/Content/cherry.png</File>
     <File>C:/Users/mathi/Documents/GitHub/Jeux_Video/PacManDevoir01/PacManDevoir01/Content/ghost-r1.png</File>
+    <File>C:/Users/mathi/Documents/GitHub/Jeux_Video/PacManDevoir01/PacManDevoir01/Content/ghost-r2.png</File>
+    <File>C:/Users/mathi/Documents/GitHub/Jeux_Video/PacManDevoir01/PacManDevoir01/Content/ghost-r3.png</File>
+    <File>C:/Users/mathi/Documents/GitHub/Jeux_Video/PacManDevoir01/PacManDevoir01/Content/ghost-r4.png</File>
     <File>C:/Users/mathi/Documents/GitHub/Jeux_Video/PacManDevoir01/PacManDevoir01/Content/Pac-1.png</File>
     <File>C:/Users/mathi/Documents/GitHub/Jeux_Video/PacManDevoir01/PacManDevoir01/Content/pac-2 Down.png</File>
     <File>C:/Users/mathi/Documents/GitHub/Jeux_Video/PacManDevoir01/PacManDevoir01/Content/pac-2 Up Left.png</File>
@@ -15,6 +18,9 @@
     <File>C:/Users/mathi/Documents/GitHub/Jeux_Video/PacManDevoir01/PacManDevoir01/Content/plateau.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

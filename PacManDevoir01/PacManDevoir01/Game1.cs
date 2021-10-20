@@ -31,6 +31,9 @@ namespace PacManDevoir01
         Vector2 positionPacman;
         Vector2 positionGhost;
         Vector2 positionCherry;
+        Vector2 positionCherry2;
+        Vector2 positionCherry3;
+        Vector2 positionCherry4;
         Vector2 poisitionBackGround;
 
 
@@ -45,6 +48,9 @@ namespace PacManDevoir01
 
         protected override void Initialize()
         {
+            _graphics.PreferredBackBufferWidth = 685;
+            _graphics.PreferredBackBufferHeight = 757;
+            _graphics.ApplyChanges();
             // position du backGround ...
             poisitionBackGround = new Vector2(10f, 10f);
             poisitionBackGround.X = 0.0f;
@@ -62,6 +68,16 @@ namespace PacManDevoir01
             positionCherry = new Vector2(100.0f, 100.0f);
             positionCherry.X = 400.0f;
             positionCherry.Y = 40.0f;
+
+            positionCherry2 = new Vector2(200f, 80f);
+
+
+            positionCherry3 = new Vector2(500f, 100f);
+
+
+            positionCherry4 = new Vector2(600f, 40f);
+
+
 
             base.Initialize();
         }
@@ -133,7 +149,7 @@ namespace PacManDevoir01
             else if (Keyboard.GetState().IsKeyDown(Keys.Down) && !Keyboard.GetState().IsKeyDown(Keys.Up))
             {
                 Pacman = PacMandown;
-               positionPacman.Y = System.Math.Min(positionPacman.Y + gameTime.ElapsedGameTime.Milliseconds * 0.5f, _graphics.GraphicsDevice.Viewport.Width - Pacman.Width);
+               positionPacman.Y = System.Math.Min(positionPacman.Y + gameTime.ElapsedGameTime.Milliseconds * 0.5f, _graphics.GraphicsDevice.Viewport.Height - Pacman.Width);
             }
 
             //Ghost
@@ -199,7 +215,10 @@ namespace PacManDevoir01
             _spriteBatch.Draw(Pacman, positionPacman, Color.White);
             _spriteBatch.Draw(Ghost, positionGhost, Color.White);
             _spriteBatch.Draw(Cherry, positionCherry, Color.White);
-          
+            _spriteBatch.Draw(Cherry, positionCherry2, Color.White);
+            _spriteBatch.Draw(Cherry, positionCherry3, Color.White);
+            _spriteBatch.Draw(Cherry, positionCherry4, Color.White);
+
             _spriteBatch.End();
 
         base.Draw(gameTime);

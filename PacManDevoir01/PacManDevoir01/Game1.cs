@@ -26,8 +26,10 @@ namespace PacManDevoir01
 
         Vector2 positionPacman;
         Vector2 positionGhost;
-        Vector2 positionCherry; 
-    
+        Vector2 positionCherry;
+        Vector2 poisitionBackGround;
+
+
 
         public Game1()
         {
@@ -53,6 +55,8 @@ namespace PacManDevoir01
             positionCherry = new Vector2(100.0f, 100.0f);
             positionCherry.X = 400.0f;
             positionCherry.Y = 40.0f;
+
+            poisitionBackGround = new Vector2(0f, 0f);
           
             base.Initialize();
         }
@@ -62,6 +66,7 @@ namespace PacManDevoir01
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             _arrierePlan = Content.Load<Texture2D>("plateau");
+
 
             _PacmanAvant = Content.Load<Texture2D>("Pac-1");
             //
@@ -79,6 +84,7 @@ namespace PacManDevoir01
 
 
             Pacman = _PacmanAvant;
+            
 
 
 
@@ -125,7 +131,9 @@ namespace PacManDevoir01
             }
 
 
-            // TODO: Add your update logic here
+           
+            if (poisitionBackGround.Y > _graphics.GraphicsDevice.Viewport.Height) 
+                poisitionBackGround.Y -= _arrierePlan.Height;
 
             base.Update(gameTime);
         }
@@ -137,15 +145,21 @@ namespace PacManDevoir01
         // TODO: Add your drawing code here
         _spriteBatch.Begin();
 
+            _spriteBatch.Draw(_arrierePlan,
+                position: new Vector2(poisitionBackGround.X, poisitionBackGround.Y - _arrierePlan.Height)
+                , Color.White);
+            _spriteBatch.Draw(_arrierePlan, position: poisitionBackGround, Color.White);
 
-        _spriteBatch.Draw(_arrierePlan, position: Vector2.Zero, Color.White);
+            _spriteBatch.Draw(_arrierePlan, position: Vector2.Zero, Color.White);
 
-        
+
             //pacMan
-
+            _spriteBatch.Draw(_arrierePlan, poisitionBackGround, Color.White);
             _spriteBatch.Draw(Pacman, positionPacman, Color.White);
             _spriteBatch.Draw(Ghost1, positionGhost, Color.White);
             _spriteBatch.Draw(Cherry, positionCherry, Color.White);
+           
+
 
 
 

@@ -69,13 +69,13 @@ namespace PacManDevoir01
             positionCherry.X = 400.0f;
             positionCherry.Y = 40.0f;
 
-            positionCherry2 = new Vector2(200f, 80f);
+            positionCherry2 = new Vector2(55f, 500f);
 
 
-            positionCherry3 = new Vector2(500f, 100f);
+            positionCherry3 = new Vector2(35f, 120f);
 
 
-            positionCherry4 = new Vector2(600f, 40f);
+            positionCherry4 = new Vector2(550f, 685f);
 
 
 

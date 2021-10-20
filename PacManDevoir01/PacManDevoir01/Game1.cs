@@ -20,6 +20,9 @@ namespace PacManDevoir01
         private Texture2D PacMandown;
         // Creation du texture2D  pour les pacman
         private Texture2D Ghost1;
+        private Texture2D Ghost2;
+        private Texture2D Ghost3;
+        private Texture2D Ghost4;
         private Texture2D Cherry;
         private Texture2D Pacman;
       
@@ -53,6 +56,7 @@ namespace PacManDevoir01
             positionGhost = new Vector2(100.0f, 100.0f);
             positionGhost.X = 40.0f;
             positionGhost.Y = 40.0f;
+            
             //Position de la cherry
             positionCherry = new Vector2(100.0f, 100.0f);
             positionCherry.X = 400.0f;
@@ -156,16 +160,7 @@ namespace PacManDevoir01
             _spriteBatch.Draw(Pacman, positionPacman, Color.White);
             _spriteBatch.Draw(Ghost1, positionGhost, Color.White);
             _spriteBatch.Draw(Cherry, positionCherry, Color.White);
-           
-
-
-
-
-
-
-
-
-
+          
             _spriteBatch.End();
 
         base.Draw(gameTime);

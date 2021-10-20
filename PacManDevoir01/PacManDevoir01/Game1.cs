@@ -7,23 +7,23 @@ namespace PacManDevoir01
     public class Game1 : Game
     {
         private GraphicsDeviceManager _graphics;
-
+        // Creation du texture2D spriteBatch,ArrierePaln,PacmanAvant
         private SpriteBatch _spriteBatch;
         private Texture2D _arrierePlan;
         private Texture2D _PacmanAvant;
-
+        // Creation du texture2D  pour les pacman
         private Texture2D PacManRight1;
         private Texture2D PacManRight2;
         private Texture2D PacManLeft1;
         private Texture2D PacManLeft2;
         private Texture2D PacmanUP;
         private Texture2D PacMandown;
-
+        // Creation du texture2D  pour les pacman
         private Texture2D Ghost1;
         private Texture2D Cherry;
         private Texture2D Pacman;
       
-
+        // Creation des vector
         Vector2 positionPacman;
         Vector2 positionGhost;
         Vector2 positionCherry;
@@ -42,6 +42,9 @@ namespace PacManDevoir01
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            poisitionBackGround = new Vector2(10f, 10f);
+            poisitionBackGround.X = 0.0f;
+            poisitionBackGround.Y = 0.0f; 
 
             //la Position de PacMan
             positionPacman = new Vector2(100.0f, 100.0f);
@@ -51,13 +54,11 @@ namespace PacManDevoir01
             positionGhost = new Vector2(100.0f, 100.0f);
             positionGhost.X = 40.0f;
             positionGhost.Y = 40.0f;
-            //
+            //Position de la cherry
             positionCherry = new Vector2(100.0f, 100.0f);
             positionCherry.X = 400.0f;
             positionCherry.Y = 40.0f;
 
-            poisitionBackGround = new Vector2(0f, 0f);
-          
             base.Initialize();
         }
 
@@ -148,6 +149,7 @@ namespace PacManDevoir01
             _spriteBatch.Draw(_arrierePlan,
                 position: new Vector2(poisitionBackGround.X, poisitionBackGround.Y - _arrierePlan.Height)
                 , Color.White);
+
             _spriteBatch.Draw(_arrierePlan, position: poisitionBackGround, Color.White);
 
             _spriteBatch.Draw(_arrierePlan, position: Vector2.Zero, Color.White);

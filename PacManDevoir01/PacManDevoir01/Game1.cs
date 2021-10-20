@@ -41,11 +41,10 @@ namespace PacManDevoir01
 
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            // position du backGround ...
             poisitionBackGround = new Vector2(10f, 10f);
             poisitionBackGround.X = 0.0f;
             poisitionBackGround.Y = 0.0f; 
-
             //la Position de PacMan
             positionPacman = new Vector2(100.0f, 100.0f);
             positionPacman.X = 325.0f;
@@ -65,39 +64,34 @@ namespace PacManDevoir01
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
+            // load les image png
 
+            //plateau
             _arrierePlan = Content.Load<Texture2D>("plateau");
-
-
+            //front PacMan
             _PacmanAvant = Content.Load<Texture2D>("Pac-1");
-            //
+            //right & Left PacMan
             PacManRight2 = Content.Load<Texture2D>("Pac-2");
             PacManRight1 = Content.Load<Texture2D>("Pac-3");
-            //
             PacManLeft1 = Content.Load<Texture2D>("Pac-2 UP Left");
-            //
+          // Up & Down PacMan
             PacmanUP = Content.Load<Texture2D>("Pac-2 Up");
-            //
             PacMandown = Content.Load<Texture2D>("Pac-2 Down");
-            //
+            //Ghost & Cherry load
             Ghost1 = Content.Load<Texture2D>("ghost-r1");
             Cherry = Content.Load<Texture2D>("cherry");
 
-
+            //
             Pacman = _PacmanAvant;
-            
 
-
-
-
-            // TODO: use this.Content to load your game content here
+           
         }
 
         protected override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-
+            // ajoute de les touche pour le pacman (left & right)
             if (Keyboard.GetState().IsKeyDown(Keys.Left) && !Keyboard.GetState().IsKeyDown(Keys.Right))
 
             {
@@ -116,6 +110,7 @@ namespace PacManDevoir01
             }
             else
                 Pacman = _PacmanAvant;
+            // ajoute de les touche pour le pacman (up & Down)
 
             if (Keyboard.GetState().IsKeyDown(Keys.Up) && !Keyboard.GetState().IsKeyDown(Keys.Down))
 
@@ -132,7 +127,7 @@ namespace PacManDevoir01
             }
 
 
-           
+          
             if (poisitionBackGround.Y > _graphics.GraphicsDevice.Viewport.Height) 
                 poisitionBackGround.Y -= _arrierePlan.Height;
 
@@ -145,7 +140,8 @@ namespace PacManDevoir01
 
         // TODO: Add your drawing code here
         _spriteBatch.Begin();
-
+            //spriteBatch.Draw pour les Background et sa position
+            
             _spriteBatch.Draw(_arrierePlan,
                 position: new Vector2(poisitionBackGround.X, poisitionBackGround.Y - _arrierePlan.Height)
                 , Color.White);
@@ -155,7 +151,7 @@ namespace PacManDevoir01
             _spriteBatch.Draw(_arrierePlan, position: Vector2.Zero, Color.White);
 
 
-            //pacMan
+            //SpriteBatch.Draw pour pacMan,Chost,Cherry
             _spriteBatch.Draw(_arrierePlan, poisitionBackGround, Color.White);
             _spriteBatch.Draw(Pacman, positionPacman, Color.White);
             _spriteBatch.Draw(Ghost1, positionGhost, Color.White);

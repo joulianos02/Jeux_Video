@@ -7,6 +7,7 @@ namespace PacManDevoir01
     public class Game1 : Game
     {
         private GraphicsDeviceManager _graphics;
+
         private SpriteBatch _spriteBatch;
         private Texture2D _arrierePlan;
         private Texture2D _PacmanAvant;
@@ -21,10 +22,16 @@ namespace PacManDevoir01
 
         private Texture2D PacMandown;
 
+        private Texture2D Ghost1;
+   
+
 
         private Texture2D Pacman;
+        private Texture2D Ghost;
 
         Vector2 positionPacman;
+        Vector2 positionGhost;
+
        
 
         public Game1()
@@ -44,7 +51,12 @@ namespace PacManDevoir01
             positionPacman = new Vector2(100.0f, 100.0f);
             positionPacman.X = 325.0f;
             positionPacman.Y = 325.0f;
-          
+            //
+            positionGhost = new Vector2(100.0f, 100.0f);
+            positionGhost.X = 100.0f;
+            positionGhost.Y = 100.0f;
+
+
 
 
 
@@ -70,6 +82,9 @@ namespace PacManDevoir01
             PacmanUP = Content.Load<Texture2D>("Pac-2 Up");
             //
             PacMandown = Content.Load<Texture2D>("Pac-2 Down");
+            //
+            Ghost1 = Content.Load<Texture2D>("ghost-r1");
+
 
 
 
@@ -140,7 +155,10 @@ namespace PacManDevoir01
             //pacMan
 
             _spriteBatch.Draw(Pacman, positionPacman, Color.White);
-      
+            _spriteBatch.Draw(Pacman, positionGhost, Color.White);
+
+
+
 
 
 

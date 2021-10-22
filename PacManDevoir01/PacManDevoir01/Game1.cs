@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 
 namespace PacManDevoir01
 {
@@ -10,23 +11,34 @@ namespace PacManDevoir01
         // Creation du texture2D spriteBatch,ArrierePaln,PacmanAvant
         private SpriteBatch _spriteBatch;
         private Texture2D _arrierePlan;
-        private Texture2D _PacmanAvant;
+        
         // Creation du texture2D  pour les pacman
-        private Texture2D PacManRight1;
-        private Texture2D PacManRight2;
-        private Texture2D PacManLeft1;
-        private Texture2D PacManLeft2;
-        private Texture2D PacmanUP;
-        private Texture2D PacMandown;
-        // Creation du texture2D  pour les pacman
-        private Texture2D Ghost1;
-        private Texture2D Ghost2;
-        private Texture2D Ghost3;
-        private Texture2D Ghost4;
-        private Texture2D Cherry;
-        private Texture2D Pacman;
-        private Texture2D Ghost;
+        private Texture2D cherryTexture;
+        private Texture2D pacmanTexture;
+        private Texture2D ghostTexture;
       
+        //Hitboxes
+        private FormeEnglobante pacmanHitbox;
+        
+        //cerises
+        private FormeEnglobante cherryHitbox;
+        private FormeEnglobante cherryHitbox2;
+        private FormeEnglobante cherryHitbox3;
+        private FormeEnglobante cherryHitbox4;
+        
+        private FormeEnglobante ghostHitbox;
+
+        //paramètres cerises mangées ou pas
+        private bool cherry1Eaten = false;
+        private bool cherry2Eaten = false;
+        private bool cherry3Eaten = false;
+        private bool cherry4Eaten = false;
+
+        private double TempsEcoule = 0;
+        private const double MouvementGhost = 1.0; //en secondes
+        private int ghostDirection = 0;
+
+
         // Creation des vector
         Vector2 positionPacman;
         Vector2 positionGhost;
@@ -36,7 +48,15 @@ namespace PacManDevoir01
         Vector2 positionCherry4;
         Vector2 poisitionBackGround;
 
+        //Animation pacman
+        private Animation chomp = new Animation(new int[] { 0, 1, 2, 1 }, interval: 100);
+        private Animation standStill = new Animation(new int[] { 0 }, interval: 1);
+        private Animation AnimationPlaying;
 
+        private SpriteEffects LeftOrRight;
+        private float rotation;
+
+        private Palette pacmanSprite;
 
         public Game1()
         {
@@ -51,33 +71,28 @@ namespace PacManDevoir01
             _graphics.PreferredBackBufferWidth = 685;
             _graphics.PreferredBackBufferHeight = 757;
             _graphics.ApplyChanges();
+            
             // position du backGround ...
             poisitionBackGround = new Vector2(10f, 10f);
             poisitionBackGround.X = 0.0f;
             poisitionBackGround.Y = 0.0f; 
+            
             //la Position de PacMan
             positionPacman = new Vector2(100.0f, 100.0f);
             positionPacman.X = 325.0f;
             positionPacman.Y = 325.0f;
+            
+            AnimationPlaying = standStill;
+            
+
             //Possitionment de Ghost sur le background
             positionGhost = new Vector2(100.0f, 100.0f);
-            positionGhost.X = 40.0f;
-            positionGhost.Y = 40.0f;
             
             //Position de la cherry
-            positionCherry = new Vector2(100.0f, 100.0f);
-            positionCherry.X = 400.0f;
-            positionCherry.Y = 40.0f;
-
+            positionCherry = new Vector2(400.0f, 40.0f);
             positionCherry2 = new Vector2(55f, 500f);
-
-
             positionCherry3 = new Vector2(35f, 120f);
-
-
             positionCherry4 = new Vector2(550f, 685f);
-
-
 
             base.Initialize();
         }
@@ -85,110 +100,141 @@ namespace PacManDevoir01
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
+            
             // load les image png
-
             //plateau
             _arrierePlan = Content.Load<Texture2D>("plateau");
+            
             //front PacMan
-            _PacmanAvant = Content.Load<Texture2D>("Pac-1");
-            //right & Left PacMan
-            PacManRight2 = Content.Load<Texture2D>("Pac-2");
-            PacManRight1 = Content.Load<Texture2D>("Pac-3");
-            PacManLeft1 = Content.Load<Texture2D>("Pac-2 UP Left");
-          // Up & Down PacMan
-            PacmanUP = Content.Load<Texture2D>("Pac-2 Up");
-            PacMandown = Content.Load<Texture2D>("Pac-2 Down");
+            pacmanTexture = Content.Load<Texture2D>("pacman");
+            pacmanSprite = new Palette(pacmanTexture, 32, 32);
+
             //Ghost & Cherry load
-            Ghost1 = Content.Load<Texture2D>("ghost-r1");
-            Ghost2 = Content.Load<Texture2D>("ghost-r2");
-            Ghost3 = Content.Load<Texture2D>("ghost-r3");
-            Ghost4 = Content.Load<Texture2D>("ghost-r4");
-
-            Cherry = Content.Load<Texture2D>("cherry");
-
-            //
-            Pacman = _PacmanAvant;
-            Ghost = Ghost1;
-
-           
+            ghostTexture = Content.Load<Texture2D>("ghost");
+            cherryTexture = Content.Load<Texture2D>("cherry");
+ 
         }
 
         protected override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+
             // ajoute de les touche pour le pacman (left & right)
             if (Keyboard.GetState().IsKeyDown(Keys.Left) && !Keyboard.GetState().IsKeyDown(Keys.Right))
-
             {
-                Pacman = PacManLeft1;
-               
-                positionPacman.X = System.Math.Max(positionPacman.X -
-                    gameTime.ElapsedGameTime.Milliseconds * 0.5f, 0.0f);
+                AnimationPlaying = chomp;
+                LeftOrRight = SpriteEffects.FlipHorizontally;
+                rotation = 0;
+
+                positionPacman.X = Math.Max(positionPacman.X -
+                    gameTime.ElapsedGameTime.Milliseconds * 0.5f, 16);
 
             }
 
             else if (Keyboard.GetState().IsKeyDown(Keys.Right) && !Keyboard.GetState().IsKeyDown(Keys.Left))
             {
-                Pacman= PacManRight2;
-                positionPacman.X = System.Math.Min(positionPacman.X + gameTime.ElapsedGameTime.Milliseconds * 0.5f, _graphics.GraphicsDevice.Viewport.Width - Pacman.Width);
+                AnimationPlaying = chomp;
+                LeftOrRight = SpriteEffects.None;
+                rotation = 0;
+
+                positionPacman.X = System.Math.Min(positionPacman.X + gameTime.ElapsedGameTime.Milliseconds * 0.5f, _graphics.GraphicsDevice.Viewport.Width - 16);
 
             }
-            else
-                Pacman = _PacmanAvant;
-            // ajoute de les touche pour le pacman (up & Down)
-
-            if (Keyboard.GetState().IsKeyDown(Keys.Up) && !Keyboard.GetState().IsKeyDown(Keys.Down))
-
+            else if (Keyboard.GetState().IsKeyDown(Keys.Up) && !Keyboard.GetState().IsKeyDown(Keys.Down))
             {
-                Pacman = PacmanUP;
-               positionPacman.Y = System.Math.Max(positionPacman.Y - gameTime.ElapsedGameTime.Milliseconds * 0.5f, 0.0f);
+                AnimationPlaying = chomp;
+                LeftOrRight = SpriteEffects.None;
+                rotation = 3 * MathHelper.Pi / 2;
+
+                positionPacman.Y = System.Math.Max(positionPacman.Y - gameTime.ElapsedGameTime.Milliseconds * 0.5f, 16);
 
             }
 
             else if (Keyboard.GetState().IsKeyDown(Keys.Down) && !Keyboard.GetState().IsKeyDown(Keys.Up))
             {
-                Pacman = PacMandown;
-               positionPacman.Y = System.Math.Min(positionPacman.Y + gameTime.ElapsedGameTime.Milliseconds * 0.5f, _graphics.GraphicsDevice.Viewport.Height - Pacman.Width);
-            }
-
-            //Ghost
-            if (Keyboard.GetState().IsKeyDown(Keys.A) && !Keyboard.GetState().IsKeyDown(Keys.D))
-
-            {
-                Ghost = Ghost4;
-
-                positionGhost.X = System.Math.Max(positionGhost.X -
-                    gameTime.ElapsedGameTime.Milliseconds * 0.5f, 0.0f);
-
-            }
-
-            else if (Keyboard.GetState().IsKeyDown(Keys.D) && !Keyboard.GetState().IsKeyDown(Keys.A))
-            {
-                Ghost = Ghost1;
-                positionGhost.X = System.Math.Max(positionGhost.X -
-                    gameTime.ElapsedGameTime.Milliseconds * 0.5f, 0.0f);
-            }
-            if (Keyboard.GetState().IsKeyDown(Keys.W) && !Keyboard.GetState().IsKeyDown(Keys.S))
-
-            {
-                Ghost = Ghost3;
-
-                positionGhost.X = System.Math.Max(positionGhost.X -
-                    gameTime.ElapsedGameTime.Milliseconds * 0.5f, 0.0f);
-
-            }
-
-            else if (Keyboard.GetState().IsKeyDown(Keys.S) && !Keyboard.GetState().IsKeyDown(Keys.W))
-            {
-                Ghost = Ghost2;
-                positionGhost.X = System.Math.Max(positionGhost.X -
-                    gameTime.ElapsedGameTime.Milliseconds * 0.5f, 0.0f);
+                AnimationPlaying = chomp;
+                LeftOrRight = SpriteEffects.None;
+                rotation = MathHelper.Pi / 2;
+                positionPacman.Y = System.Math.Min(positionPacman.Y + gameTime.ElapsedGameTime.Milliseconds * 0.5f, _graphics.GraphicsDevice.Viewport.Height - 16);
             }
             else
+            {
+                AnimationPlaying = standStill;
+            }
+
+            TempsEcoule += gameTime.ElapsedGameTime.TotalSeconds;
+
+            if (TempsEcoule >= MouvementGhost){
+                TempsEcoule -= MouvementGhost;
+                Random ran = new Random();
+                ghostDirection = ran.Next(4);    
+            }
+
+            switch(ghostDirection){
+                //Déplace le fantome vers la gauche
+                case 0:
+                    positionGhost.X = Math.Max(positionGhost.X -
+                    gameTime.ElapsedGameTime.Milliseconds * 0.5f, 16);
+                    break;
+                
+                //Déplace le fantome vers la droite
+                case 1:
+                   positionGhost.X = Math.Min(positionGhost.X + 
+                   gameTime.ElapsedGameTime.Milliseconds * 0.5f, _graphics.GraphicsDevice.Viewport.Width - 32); 
+                    break;
+                
+                //Déplace le fantome vers le haut
+                case 2:
+                    positionGhost.Y = Math.Max(positionGhost.Y - 
+                    gameTime.ElapsedGameTime.Milliseconds * 0.5f, 16);
+                    break;
+
+                //Déplace le fantome vers le bas
+                case 3:
+                    positionGhost.Y = Math.Min(positionGhost.Y + 
+                    gameTime.ElapsedGameTime.Milliseconds * 0.5f, _graphics.GraphicsDevice.Viewport.Height - 32);
+                    break;
+                
+                default:
+                    break;
+            }
 
             if (poisitionBackGround.Y > _graphics.GraphicsDevice.Viewport.Height) 
                 poisitionBackGround.Y -= _arrierePlan.Height;
+
+            
+            pacmanHitbox = new FormeEnglobante(positionPacman - new Vector2(16, 16), 32, 32);
+
+            cherryHitbox = new FormeEnglobante(positionCherry - new Vector2(16, 16), 32, 32);
+            cherryHitbox2 = new FormeEnglobante(positionCherry2 - new Vector2(16, 16), 32, 32);
+            cherryHitbox3 = new FormeEnglobante(positionCherry3 - new Vector2(16, 16), 32, 32);
+            cherryHitbox4 = new FormeEnglobante(positionCherry4 - new Vector2(16, 16), 32, 32);
+            
+            ghostHitbox = new FormeEnglobante(positionGhost - new Vector2(16, 16), 32, 32);
+            
+            AnimationPlaying.Update(gameTime);
+            
+            //Détection de collision avec les cerises
+            if (pacmanHitbox.EnCollisionAvec(cherryHitbox)) {
+                cherry1Eaten = true;
+            }
+
+            if (pacmanHitbox.EnCollisionAvec(cherryHitbox2)) {
+                cherry2Eaten = true;
+            }
+
+            if (pacmanHitbox.EnCollisionAvec(cherryHitbox3)) {
+                cherry3Eaten = true;
+            }
+
+            if (pacmanHitbox.EnCollisionAvec(cherryHitbox4)) {
+                cherry4Eaten = true;
+            }
+
+            if (pacmanHitbox.EnCollisionAvec(ghostHitbox)){
+                   this.Exit();
+            }
 
             base.Update(gameTime);
         }
@@ -210,14 +256,35 @@ namespace PacManDevoir01
             _spriteBatch.Draw(_arrierePlan, position: Vector2.Zero, Color.White);
 
 
-            //SpriteBatch.Draw pour pacMan,Chost,Cherry
+            //SpriteBatch.Draw pour pacMan, Chost, Cherry
             _spriteBatch.Draw(_arrierePlan, poisitionBackGround, Color.White);
-            _spriteBatch.Draw(Pacman, positionPacman, Color.White);
-            _spriteBatch.Draw(Ghost, positionGhost, Color.White);
-            _spriteBatch.Draw(Cherry, positionCherry, Color.White);
-            _spriteBatch.Draw(Cherry, positionCherry2, Color.White);
-            _spriteBatch.Draw(Cherry, positionCherry3, Color.White);
-            _spriteBatch.Draw(Cherry, positionCherry4, Color.White);
+
+            _spriteBatch.Draw(
+                pacmanTexture, 
+                destinationRectangle: new Rectangle((int)positionPacman.X, (int)positionPacman.Y, 32, 32),
+                sourceRectangle: pacmanSprite.SourceRect(AnimationPlaying.CurrentFrame), 
+                Color.White,
+                rotation: rotation,
+                origin: new Vector2(16f, 16f),
+                effects: LeftOrRight,
+                layerDepth: 0);
+            
+            //Paramètre de direction pour l'affichage
+
+            _spriteBatch.Draw(ghostTexture, positionGhost,Color.White); 
+            
+            //Affiche les cerises si elle ne sont pas mangées
+            if (!cherry1Eaten)
+                _spriteBatch.Draw(cherryTexture, positionCherry, Color.White);
+
+            if(!cherry2Eaten)
+                _spriteBatch.Draw(cherryTexture, positionCherry2, Color.White);
+
+            if(!cherry3Eaten)
+                _spriteBatch.Draw(cherryTexture, positionCherry3, Color.White);
+            
+            if(!cherry4Eaten)
+                _spriteBatch.Draw(cherryTexture, positionCherry4, Color.White);
 
             _spriteBatch.End();
 

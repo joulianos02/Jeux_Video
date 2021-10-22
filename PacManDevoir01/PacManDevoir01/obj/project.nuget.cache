@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "Yt3uLlAs4+rr7zTntlcI+hkkv9AroyDtlUsYGOOaIFs9mPYfh4JXCIiO/QsJLyjADPrFUQDZWj4ozvGlL2nHyA==",
+  "dgSpecHash": "w/HVrcusBqPXJjJX+F8WdvrxJ8XNn475bng7Qh1HsgzOnkPTfkSXpBaTnN95X1hitRP0IAPGqq07JAjsJv9qgg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\mathi\\Documents\\GitHub\\Jeux_Video\\PacManDevoir01\\PacManDevoir01\\PacManDevoir01.csproj",
+  "projectFilePath": "C:\\Users\\julie\\OneDrive\\Documents\\GitHub\\Jeux_Video\\PacManDevoir01\\PacManDevoir01\\PacManDevoir01.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\mathi\\.nuget\\packages\\monogame.content.builder.task\\3.8.0.1641\\monogame.content.builder.task.3.8.0.1641.nupkg.sha512",
-    "C:\\Users\\mathi\\.nuget\\packages\\monogame.framework.desktopgl\\3.8.0.1641\\monogame.framework.desktopgl.3.8.0.1641.nupkg.sha512"
+    "C:\\Users\\julie\\.nuget\\packages\\monogame.content.builder.task\\3.8.0.1641\\monogame.content.builder.task.3.8.0.1641.nupkg.sha512",
+    "C:\\Users\\julie\\.nuget\\packages\\monogame.framework.desktopgl\\3.8.0.1641\\monogame.framework.desktopgl.3.8.0.1641.nupkg.sha512"
   ],
   "logs": []
 }

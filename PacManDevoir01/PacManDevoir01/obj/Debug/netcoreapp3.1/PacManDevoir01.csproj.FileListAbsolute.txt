@@ -69,3 +69,5 @@ C:\Users\julie\OneDrive\Documents\GitHub\Jeux_Video\PacManDevoir01\PacManDevoir0
 C:\Users\julie\OneDrive\Documents\GitHub\Jeux_Video\PacManDevoir01\PacManDevoir01\obj\Debug\netcoreapp3.1\PacManDevoir01.dll
 C:\Users\julie\OneDrive\Documents\GitHub\Jeux_Video\PacManDevoir01\PacManDevoir01\obj\Debug\netcoreapp3.1\PacManDevoir01.pdb
 C:\Users\julie\OneDrive\Documents\GitHub\Jeux_Video\PacManDevoir01\PacManDevoir01\obj\Debug\netcoreapp3.1\PacManDevoir01.genruntimeconfig.cache
+C:\Users\julie\OneDrive\Documents\GitHub\Jeux_Video\PacManDevoir01\PacManDevoir01\bin\Debug\netcoreapp3.1\Content\ghost.xnb
+C:\Users\julie\OneDrive\Documents\GitHub\Jeux_Video\PacManDevoir01\PacManDevoir01\bin\Debug\netcoreapp3.1\Content\pacman.xnb
